@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IJuniorDemo
 {
@@ -10,6 +6,16 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
+            int count;
+            bool isActive;
+            float horizontalCoordinate;
+            string firstName;
+            double distance;
+            decimal money;
+            ushort yesr;
+            byte level;
+            char firstLetterName;
+            long number;
         }
     }
 }
