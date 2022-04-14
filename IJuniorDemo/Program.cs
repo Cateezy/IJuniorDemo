@@ -8,10 +8,8 @@ namespace IJuniorDemo
         {
             int pictures = 52;
             int limitRowPictures = 3;
-            int fullRowsOfPictures = pictures / limitRowPictures;
-            int picturesNotInFullRow = pictures % limitRowPictures;
 
-            Console.WriteLine($"Рядов заполнено картинками: {fullRowsOfPictures} , в неполном ряду: {picturesNotInFullRow}");
+            Console.WriteLine($"Рядов заполнено картинками: {pictures / limitRowPictures} , в неполном ряду: {pictures % limitRowPictures}");
         }
     }
 }
