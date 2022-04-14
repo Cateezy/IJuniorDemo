@@ -2,7 +2,7 @@
 
 namespace IJuniorDemo
 {
-    class Program
+    class Program : Example3
     {
         static void Main(string[] args)
         {
@@ -16,6 +16,8 @@ namespace IJuniorDemo
             byte level;
             char firstLetterName;
             long number;
+
+            WorkWithString();
         }
     }
 }
