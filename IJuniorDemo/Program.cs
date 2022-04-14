@@ -11,13 +11,15 @@ namespace IJuniorDemo
             int crystals;
             int crystalCost = 120;
             int countOfPurchasedCrystals;
-            int costOfPurchasedCrystals;
+            int fullOfPurchasedCrystals;
 
             Console.WriteLine($"Укажите кол-во кристалов для покупки. Стоимость одного кристала - {crystalCost}");
             countOfPurchasedCrystals = Convert.ToInt32(Console.ReadLine());
-            costOfPurchasedCrystals = crystalCost * countOfPurchasedCrystals;
-            crystals = gold - costOfPurchasedCrystals;
-            gold -= crystals;
+            fullOfPurchasedCrystals = crystalCost * countOfPurchasedCrystals;
+            crystals = gold - fullOfPurchasedCrystals;
+            gold -= fullOfPurchasedCrystals;
+            crystals /= crystalCost;
+            
 
             Console.WriteLine($"Кол-во кристалов - {crystals}, кол-во оставшегося золота {gold}");
         }
