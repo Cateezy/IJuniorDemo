@@ -6,16 +6,20 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            string firstName = "Иванов";
-            string lastName = "Иван";
-            string temp;
-            Console.WriteLine($"Некорректные данные, имя - {firstName}, фамилия - {lastName}");
+            Console.WriteLine("Укажите кол-во золота: ");
+            int gold = Convert.ToInt32(Console.ReadLine());
+            int crystals;
+            int crystalCost = 120;
+            int countOfPurchasedCrystals;
+            int fullOfPurchasedCrystals;
 
-            temp = firstName;
-            firstName = lastName;
-            lastName = temp;
+            Console.WriteLine($"Укажите кол-во кристалов для покупки. Стоимость одного кристала - {crystalCost}");
+            countOfPurchasedCrystals = Convert.ToInt32(Console.ReadLine());
+            fullOfPurchasedCrystals = crystalCost * countOfPurchasedCrystals;
+            crystals = gold - fullOfPurchasedCrystals;
+            gold -= crystals;
 
-            Console.WriteLine($"Корректные данные - имя: {firstName}, фамилия - {lastName}");
+            Console.WriteLine($"Кол-во кристалов - {crystals}, кол-во оставшегося золота {gold}");
         }
     }
 }
