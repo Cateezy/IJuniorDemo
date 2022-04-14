@@ -2,16 +2,20 @@
 
 namespace IJuniorDemo
 {
-    class Program : Example3
+    class Program
     {
         static void Main(string[] args)
         {
-            int pictures = 52;
-            int limitRowPictures = 3;
-            int fullRowsOfPictures = pictures / limitRowPictures;
-            int picturesNotInFullRow = pictures % limitRowPictures;
+            string firstName = "Иванов";
+            string lastName = "Иван";
+            string temp;
+            Console.WriteLine($"Некорректные данные, имя - {firstName}, фамилия - {lastName}");
 
-            Console.WriteLine($"Рядов заполнено картинками: {fullRowsOfPictures} , в неполном ряду:  {picturesNotInFullRow}");
+            temp = firstName;
+            firstName = lastName;
+            lastName = temp;
+
+            Console.WriteLine($"Корректные данные - имя: {firstName}, фамилия - {lastName}");
         }
     }
 }
