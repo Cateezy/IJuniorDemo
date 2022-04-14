@@ -6,16 +6,16 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Укажите кол-во золота: ");
-            int gold = Convert.ToInt32(Console.ReadLine());
-            int crystals;
-            int crystalCost = 120;
+            Console.WriteLine("Введите кол-во человек в очереди: ");
+            int queueCount = Convert.ToInt32(Console.ReadLine());
+            int hours;
+            int minutes;
+            int receiptTime = 10;
 
-            Console.WriteLine($"Укажите кол-во кристалов для покупки. Стоимость одного кристала - {crystalCost}");
-            crystals = Convert.ToInt32(Console.ReadLine());
-            gold -= crystals * crystalCost;
+            hours = (queueCount * receiptTime) / 60;
+            minutes = (queueCount * receiptTime) % 60;
+            Console.WriteLine($"Время ожидания в очереди: {hours} часа и {minutes} минут");
             
-            Console.WriteLine($"Кол-во кристалов - {crystals}, кол-во оставшегося золота {gold}");
         }
     }
 }
