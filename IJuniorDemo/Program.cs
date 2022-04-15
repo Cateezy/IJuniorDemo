@@ -6,16 +6,18 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Напишите текст который нужно повторить: ");
-            string repeatText = Console.ReadLine();
+            int cycleCounter = 0;
+            string cycleStopLetter = "Exit";
+            string cycleReceivedLetter = "";
 
-            Console.WriteLine("Укажите кол-во повторений: ");
-            int repeatCount = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < repeatCount; i++)
+            while (cycleStopLetter != cycleReceivedLetter)
             {
-                Console.WriteLine(repeatText);
+                Console.WriteLine(cycleCounter++);
+                Console.WriteLine("Для завершения цикла введите 'Exit', для продолжения нажмите Enter");
+                cycleReceivedLetter = Console.ReadLine();
             }
+
+            Console.WriteLine("Выход из цикла");
         }
     }
 }
