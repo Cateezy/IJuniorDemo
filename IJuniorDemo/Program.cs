@@ -11,17 +11,15 @@ namespace IJuniorDemo
             int multiplesThree = 3;
             int multiplesFive = 5;
             int multiplesSum = 0;
-            int cycleCounter = 1;
             Console.WriteLine($"Сгенерированное число: {number}");
 
-            while (cycleCounter <= number)
+            for (int i = 1; i < number; i++)
             {
-                if (cycleCounter % multiplesThree == 0 || cycleCounter % multiplesFive == 0)
+                if (i % multiplesThree == 0 || i % multiplesFive == 0)
                 {
-                    multiplesSum += cycleCounter;
-                    Console.Write(cycleCounter + " ");
+                    multiplesSum += i;
+                    Console.Write(i + " ");
                 }
-                cycleCounter++;
             }
             Console.WriteLine();
             Console.WriteLine($"Сумма всех чисел кратных 3 и 5: {multiplesSum}");
