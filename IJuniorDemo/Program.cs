@@ -6,18 +6,16 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int cycleCounter = 0;
-            string cycleStopLetter = "Exit";
-            string cycleReceivedLetter = "";
+            int increasedNumber = 5;
+            int increasedLastNumber = 103;
+            int increaseStep = 7;
 
-            while (cycleStopLetter != cycleReceivedLetter)
+            while (increasedNumber != increasedLastNumber)
             {
-                Console.WriteLine(cycleCounter++);
-                Console.WriteLine("Для завершения цикла введите 'Exit', для продолжения нажмите Enter");
-                cycleReceivedLetter = Console.ReadLine();
+                Console.Write(increasedNumber + " ");
+                increasedNumber += increaseStep;
             }
-
-            Console.WriteLine("Выход из цикла");
+            
         }
     }
 }
