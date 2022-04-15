@@ -8,13 +8,14 @@ namespace IJuniorDemo
         {
             Console.WriteLine("Введите кол-во человек в очереди: ");
             int queueCount = Convert.ToInt32(Console.ReadLine());
-            int hours;
-            int minutes;
+            int hoursWaiting;
+            int minutesWaiting;
             int receiptTime = 10;
+            int minutesInHour = 60;
 
-            hours = (queueCount * receiptTime) / 60;
-            minutes = (queueCount * receiptTime) % 60;
-            Console.WriteLine($"Время ожидания в очереди: {hours} часа и {minutes} минут");
+            hoursWaiting = (queueCount * receiptTime) / minutesInHour;
+            minutesWaiting = (queueCount * receiptTime) % minutesInHour;
+            Console.WriteLine($"Время ожидания в очереди: {hoursWaiting} часа и {minutesWaiting} минут");
             
         }
     }
