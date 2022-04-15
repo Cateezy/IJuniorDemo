@@ -6,17 +6,16 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите кол-во человек в очереди: ");
-            int queueCount = Convert.ToInt32(Console.ReadLine());
-            int hoursWaiting;
-            int minutesWaiting;
-            int receiptTime = 10;
-            int minutesInHour = 60;
+            Console.WriteLine("Напишите текст который нужно повторить: ");
+            string repeatText = Console.ReadLine();
 
-            hoursWaiting = (queueCount * receiptTime) / minutesInHour;
-            minutesWaiting = (queueCount * receiptTime) % minutesInHour;
-            Console.WriteLine($"Время ожидания в очереди: {hoursWaiting} часа и {minutesWaiting} минут");
-            
+            Console.WriteLine("Укажите кол-во повторений: ");
+            int repeatCount = Convert.ToInt32(Console.ReadLine());
+
+            for (int i = 0; i < repeatCount; i++)
+            {
+                Console.WriteLine(repeatText);
+            }
         }
     }
 }
