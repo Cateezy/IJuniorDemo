@@ -7,10 +7,10 @@ namespace IJuniorDemo
         static void Main(string[] args)
         {
             int increasedNumber = 5;
-            int increasedLastNumber = 103;
+            int increasedLastNumber = 96;
             int increaseStep = 7;
 
-            while (increasedNumber != increasedLastNumber)
+            while (increasedNumber <= increasedLastNumber)
             {
                 Console.Write(increasedNumber + " ");
                 increasedNumber += increaseStep;
