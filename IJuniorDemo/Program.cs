@@ -6,23 +6,26 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите имя: ");
-            string name = Console.ReadLine();
-            Console.WriteLine("Введите символ: ");
-            char symbol = Convert.ToChar(Console.ReadLine());
+            string password = "12346";
+            string secretMessage = "Some text";
+            string userAttempt;
+            int incorrectAttempt = 0;
 
-            for (int i = 0; i <= name.Length + 1; i++)
+            do
             {
-                Console.Write(symbol);
-            }
-            Console.WriteLine();
-            Console.WriteLine($"{symbol}{name}{symbol}");
+                Console.WriteLine("Введите пароль: ");
+                userAttempt = Console.ReadLine();
 
-            for (int i = 0; i <= name.Length + 1; i++)
-            {
-                Console.Write(symbol);
+                if (userAttempt == password)
+                {
+                    Console.WriteLine(secretMessage);
+                    break;
+                }
+
+                incorrectAttempt++;
             }
-            Console.ReadKey();
+            while (incorrectAttempt != 3);
+
         }
     }
 }
