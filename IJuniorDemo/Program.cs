@@ -8,23 +8,21 @@ namespace IJuniorDemo
         {
             string password = "12346";
             string secretMessage = "Some text";
-            string userAttempt;
-            int incorrectAttempt = 0;
+            string userInput;
+            int incorrectAttempt = 3;
 
-            do
+            for (int i = 0; i < incorrectAttempt; i++)
             {
                 Console.WriteLine("Введите пароль: ");
-                userAttempt = Console.ReadLine();
+                userInput = Console.ReadLine();
 
-                if (userAttempt == password)
+                if (userInput == password)
                 {
                     Console.WriteLine(secretMessage);
                     break;
                 }
 
-                incorrectAttempt++;
             }
-            while (incorrectAttempt != 3);
 
         }
     }
