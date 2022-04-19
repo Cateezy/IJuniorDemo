@@ -7,26 +7,20 @@ namespace IJuniorDemo
         static void Main(string[] args)
         {
             Random random = new Random();
-            int numberOfMultiple = 0;
-            int firstMultipleNumber = 100;
-            int lastMultipleNumber = 1000;
-            int minNumberRange = 1;
-            int maxNumberRange = 28;
-            int numberRange = random.Next(minNumberRange, maxNumberRange);
-            int tempNumberRange = numberRange;
+            int randomMaxValue = 1000;
+            int baseNumber = random.Next(randomMaxValue);
+            int degreeOfNumber = 1;
+            int baseDegreeOfNumber = 2;
+            int numberRaisedToDegree = 0;
 
-            while (tempNumberRange < lastMultipleNumber)
+            while (baseNumber > numberRaisedToDegree)
             {
-                tempNumberRange += numberRange;
-
-                if (tempNumberRange >= firstMultipleNumber)
-                {
-                    numberOfMultiple++;
-                }
-
+                numberRaisedToDegree = Convert.ToInt32(Math.Pow(baseDegreeOfNumber, degreeOfNumber));
+                degreeOfNumber++;
             }
 
-            Console.WriteLine($"Кол-во чисел кратных {numberRange} = {numberOfMultiple}");
+            Console.WriteLine($"Начальное число: {baseNumber}, число 2 в степени {degreeOfNumber} = {numberRaisedToDegree}");
+            
         }
     }
 }
