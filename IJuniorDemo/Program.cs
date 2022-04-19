@@ -6,24 +6,27 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            string password = "12346";
-            string secretMessage = "Some text";
-            string userInput;
-            int incorrectAttempt = 3;
+            Random random = new Random();
+            int numberOfMultiple = 0;
+            int firstMultipleNumber = 100;
+            int lastMultipleNumber = 1000;
+            int minNumberRange = 1;
+            int maxNumberRange = 28;
+            int numberRange = random.Next(minNumberRange, maxNumberRange);
+            int tempNumberRange = numberRange;
 
-            for (int i = 0; i < incorrectAttempt; i++)
+            while (tempNumberRange < lastMultipleNumber)
             {
-                Console.WriteLine("Введите пароль: ");
-                userInput = Console.ReadLine();
+                tempNumberRange += numberRange;
 
-                if (userInput == password)
+                if (tempNumberRange >= firstMultipleNumber)
                 {
-                    Console.WriteLine(secretMessage);
-                    break;
+                    numberOfMultiple++;
                 }
 
             }
 
+            Console.WriteLine($"Кол-во чисел кратных {numberRange} = {numberOfMultiple}");
         }
     }
 }
