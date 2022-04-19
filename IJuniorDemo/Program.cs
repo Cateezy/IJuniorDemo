@@ -19,7 +19,7 @@ namespace IJuniorDemo
                 degreeOfNumber++;
             }
 
-            Console.WriteLine($"Начальное число: {baseNumber}, число 2 в степени {degreeOfNumber} = {numberRaisedToDegree}");
+            Console.WriteLine($"Начальное число: {baseNumber}, число {baseDegreeOfNumber} в степени {degreeOfNumber} = {numberRaisedToDegree}");
             
         }
     }
