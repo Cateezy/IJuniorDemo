@@ -6,21 +6,41 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
-            int randomMaxValue = 1000;
-            int baseNumber = random.Next(randomMaxValue);
-            int degreeOfNumber = 1;
-            int baseDegreeOfNumber = 2;
-            int numberRaisedToDegree = 0;
+            int countLeftRoundBracket = 0;
+            int countRightRoundBracket = 0;
+            string userInput = Console.ReadLine();
 
-            while (baseNumber > numberRaisedToDegree)
+            for (int i = 0; i < userInput.Length; i++)
             {
-                numberRaisedToDegree = Convert.ToInt32(Math.Pow(baseDegreeOfNumber, degreeOfNumber));
-                degreeOfNumber++;
+                char tempLeftRoundBracket = '(';
+                char tempRightRoundBracket = ')';
+
+                if (tempRightRoundBracket == userInput[0])
+                {
+                    countRightRoundBracket++;
+                    break;
+                }
+
+                if (tempRightRoundBracket == userInput[i])
+                {
+                    countRightRoundBracket++;
+                }
+                else if(tempLeftRoundBracket == userInput[i])
+                {
+                    countLeftRoundBracket++;
+                }
+
             }
 
-            Console.WriteLine($"Начальное число: {baseNumber}, число {baseDegreeOfNumber} в степени {degreeOfNumber} = {numberRaisedToDegree}");
-            
+            if (countLeftRoundBracket == countRightRoundBracket)
+            {
+                Console.WriteLine($"Данное выражение: {userInput} является корректным скобочным выражением");
+            }
+            else
+            {
+                Console.WriteLine($"Данное выражение: {userInput} является некорректным скобочным выражением");
+            }
+
         }
     }
 }
