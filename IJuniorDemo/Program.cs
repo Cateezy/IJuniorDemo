@@ -6,35 +6,36 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int countLeftRoundBracket = 0;
-            int countRightRoundBracket = 0;
+            int countRoundBrackets = 0;
+            int maxDepthRoundBracket = 0;
+            char leftRoundBracket = '(';
+            char rightRoundBracket = ')';
             string userInput = Console.ReadLine();
 
             for (int i = 0; i < userInput.Length; i++)
             {
-                char tempLeftRoundBracket = '(';
-                char tempRightRoundBracket = ')';
 
-                if (tempRightRoundBracket == userInput[0])
+                if (userInput[i] == leftRoundBracket)
                 {
-                    countRightRoundBracket++;
+                    countRoundBrackets++;
+                }
+
+                if (userInput[i] == rightRoundBracket)
+                {
+                    countRoundBrackets--;
+                    maxDepthRoundBracket++;
+                }
+
+                if (countRoundBrackets < 0)
+                {
                     break;
                 }
-
-                if (tempRightRoundBracket == userInput[i])
-                {
-                    countRightRoundBracket++;
-                }
-                else if(tempLeftRoundBracket == userInput[i])
-                {
-                    countLeftRoundBracket++;
-                }
-
+                
             }
 
-            if (countLeftRoundBracket == countRightRoundBracket)
+            if (countRoundBrackets == 0)
             {
-                Console.WriteLine($"Данное выражение: {userInput} является корректным скобочным выражением");
+                Console.WriteLine($"Данное выражение: {userInput} является корректным скобочным выражением, глубина: {maxDepthRoundBracket}");
             }
             else
             {
