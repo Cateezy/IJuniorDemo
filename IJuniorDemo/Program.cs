@@ -6,42 +6,81 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int countRoundBrackets = 0;
-            int maxDepthRoundBracket = 0;
-            char leftRoundBracket = '(';
-            char rightRoundBracket = ')';
-            string userInput = Console.ReadLine();
+            int health = 1000;
+            int enemyHealth = 1600;
+            int damage = 50;
+            int enemyDamage = 60;
+            int manaPool = 500;
+            int spiritsInvokeManaCost = 100;
+            int volleyManaCost = 200;
+            int stunManaCost = 200;
+            int stunTimer = 0;
+            bool isSpiritsActive = false;
+            int playerChoose;
 
-            for (int i = 0; i < userInput.Length; i++)
+            while (health > 0 && enemyHealth > 0)
             {
 
-                if (userInput[i] == leftRoundBracket)
+                if (manaPool > 0)
                 {
-                    countRoundBrackets++;
+                    Console.WriteLine($"Введите 1, чтобы призвать духов которые повысят урон на 20 и позволят использовать Залп, маны потратится: {spiritsInvokeManaCost}");
+                    Console.WriteLine($"Введите 2, чтобы сделать Залп совместно с духами, который нанесет 350 урона, маны потратится: {volleyManaCost}");
+                    Console.WriteLine($"Введите 3, чтобы застанить босса на 2 удара, маны потратится: {stunManaCost}");
+                    Console.WriteLine($"Отавшаяся мана: {manaPool}");
+                    playerChoose = Convert.ToInt32(Console.ReadLine());
+
+                    if (playerChoose == 1 && isSpiritsActive == false)
+                    {
+                        manaPool -= spiritsInvokeManaCost;
+                        isSpiritsActive = true;
+                        damage += 20;
+                    }
+                    else if (playerChoose == 1 && isSpiritsActive == true)
+                    {
+                        Console.WriteLine("Духи уже активны!");
+                    }
+
+                    if (isSpiritsActive == true && playerChoose == 2)
+                    {
+                        manaPool -= volleyManaCost;
+                        enemyHealth -= 350;
+                    }
+                    else if (isSpiritsActive == false && playerChoose == 2)
+                    {
+                        Console.WriteLine("Духи не активны, невозможно использовать заклинание");
+                    }
+
+                    if (playerChoose == 3)
+                    {
+                        manaPool -= stunManaCost;
+                        stunTimer = 2;
+                    }
+
                 }
 
-                if (userInput[i] == rightRoundBracket)
+                if (stunTimer == 0)
                 {
-                    countRoundBrackets--;
-                    maxDepthRoundBracket++;
+                    health -= enemyDamage;
+                }
+                else
+                {
+                    stunTimer--;
                 }
 
-                if (countRoundBrackets < 0)
-                {
-                    break;
-                }
-                
+                enemyHealth -= damage;
+                Console.WriteLine($"Здоровье героя: {health}\nЗдоровье босса: {enemyHealth}");
+
             }
 
-            if (countRoundBrackets == 0)
+            if (health <= 0)
             {
-                Console.WriteLine($"Данное выражение: {userInput} является корректным скобочным выражением, глубина: {maxDepthRoundBracket}");
-            }
-            else
-            {
-                Console.WriteLine($"Данное выражение: {userInput} является некорректным скобочным выражением");
+                Console.WriteLine("Победил босс!");
             }
 
+            if (enemyHealth <= 0)
+            {
+                Console.WriteLine("Победил герой!");
+            }
         }
     }
 }
