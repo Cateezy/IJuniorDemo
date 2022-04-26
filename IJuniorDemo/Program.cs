@@ -18,6 +18,8 @@ namespace IJuniorDemo
             bool isSpiritsActive = false;
             int playerChoose;
 
+            Console.WriteLine("Вы герой класса: Лучник");
+
             while (health > 0 && enemyHealth > 0)
             {
 
