@@ -9,6 +9,8 @@ namespace IJuniorDemo
             int[,] array = new int[5, 5];
             int productOfFirstColumn = 1;
             int sumOfSecondLine = 0;
+            int firstRandomNumber = 0;
+            int lastRandomNumber = 10;
             Random random = new Random();
 
             for (int i = 0; i < array.GetLength(0); i++)
@@ -16,7 +18,7 @@ namespace IJuniorDemo
 
                 for (int j = 0; j < array.GetLength(1); j++)
                 {
-                    array[i, j] = random.Next(0, 10);
+                    array[i, j] = random.Next(firstRandomNumber, lastRandomNumber);
                     Console.Write(array[i, j] + " ");
                 }
 
