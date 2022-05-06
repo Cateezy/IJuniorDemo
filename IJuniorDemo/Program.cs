@@ -6,12 +6,15 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int[,] array = new int[5, 5];
-            int productOfFirstColumn = 1;
-            int sumOfSecondLine = 0;
+            int numberOfColumns = 10;
+            int numberOfLines = 10;
+            int[,] array = new int[numberOfLines, numberOfColumns];
             int firstRandomNumber = 0;
             int lastRandomNumber = 10;
+            int maxNumber = 0;
             Random random = new Random();
+
+            Console.WriteLine("Исходный массив: ");
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
@@ -28,19 +31,39 @@ namespace IJuniorDemo
 
             for (int i = 0; i < array.GetLength(0); i++)
             {
-                int temp = array[i, 0];
-                productOfFirstColumn *= temp;
+
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+
+                    if (maxNumber < array[i,j])
+                    {
+                        maxNumber = array[i, j];
+                    }
+
+                }
+
             }
 
-            Console.WriteLine($"Произведение первого столбца: {productOfFirstColumn}");
+            Console.WriteLine("Измененный массив: ");
 
-            for (int i = 0; i < array.GetLength(1); i++)
+            for (int i = 0; i < array.GetLength(0); i++)
             {
-                int temp = array[1, i];
-                sumOfSecondLine += temp;
+
+                for (int j = 0; j < array.GetLength(1); j++)
+                {
+
+                    if (maxNumber == array[i, j])
+                    {
+                        array[i, j] = 0;
+                    }
+
+                    Console.Write(array[i, j] + " ");
+                }
+
+                Console.WriteLine();
             }
 
-            Console.WriteLine($"Сумма второй строки: {sumOfSecondLine}");
+            Console.WriteLine($"Максимальное число: {maxNumber}");
         }
     }
 }
