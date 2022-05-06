@@ -22,35 +22,27 @@ namespace IJuniorDemo
 
             Console.WriteLine();
 
+            if (array[0] > array[1])
+            {
+                Console.WriteLine($"Локальный максимум: {array[0]}");
+            }
+
+            if (array[numbersInArray - 1] > array[numbersInArray - 2])
+            {
+                Console.WriteLine($"Локальный максимум: {array[numbersInArray - 1]}");
+            }
+
             for (int i = 0; i <= array.Length; i++)
             {
 
-                if (i == 0 && i != numbersInArray - 1)
-                {
-
-                    if (array[i] > array[i + 1])
-                    {
-                        Console.WriteLine($"Локальный максимум: {array[i]}");
-                    }
-
-                }
-                else if (i != 0 && i == numbersInArray - 1)
-                {
-
-                    if (array[i] > array[i - 1])
-                    {
-                        Console.WriteLine($"Локальный максимум: {array[i]}");
-                    }
-
-                }
-                else if (i > 1 && i < numbersInArray)
+                if (i > 1 && i < numbersInArray)
                 {
 
                     if (array[i] > array[i - 1] && array[i] > array[i + 1])
                     {
                         Console.WriteLine($"Локальный максимум: {array[i]}");
                     }
-                    
+
                 }
 
             }
