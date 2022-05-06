@@ -6,64 +6,55 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int numberOfColumns = 10;
-            int numberOfLines = 10;
-            int[,] array = new int[numberOfLines, numberOfColumns];
-            int firstRandomNumber = 0;
-            int lastRandomNumber = 10;
-            int maxNumber = 0;
             Random random = new Random();
+            int numbersInArray = 30;
+            int[] array = new int[numbersInArray];
+            int firstRandomNumber = 0;
+            int lastRandomNumber = 100;
 
             Console.WriteLine("Исходный массив: ");
 
-            for (int i = 0; i < array.GetLength(0); i++)
+            for (int i = 0; i < array.Length; i++)
             {
-
-                for (int j = 0; j < array.GetLength(1); j++)
-                {
-                    array[i, j] = random.Next(firstRandomNumber, lastRandomNumber);
-                    Console.Write(array[i, j] + " ");
-                }
-
-                Console.WriteLine();
-
+                array[i] = random.Next(firstRandomNumber, lastRandomNumber);
+                Console.Write($"{array[i]} ");
             }
 
-            for (int i = 0; i < array.GetLength(0); i++)
+            Console.WriteLine();
+
+            for (int i = 0; i <= array.Length; i++)
             {
 
-                for (int j = 0; j < array.GetLength(1); j++)
+                if (i == 0 && i != numbersInArray - 1)
                 {
 
-                    if (maxNumber < array[i,j])
+                    if (array[i] > array[i + 1])
                     {
-                        maxNumber = array[i, j];
+                        Console.WriteLine($"Локальный максимум: {array[i]}");
                     }
 
                 }
-
-            }
-
-            Console.WriteLine("Измененный массив: ");
-
-            for (int i = 0; i < array.GetLength(0); i++)
-            {
-
-                for (int j = 0; j < array.GetLength(1); j++)
+                else if (i != 0 && i == numbersInArray - 1)
                 {
 
-                    if (maxNumber == array[i, j])
+                    if (array[i] > array[i - 1])
                     {
-                        array[i, j] = 0;
+                        Console.WriteLine($"Локальный максимум: {array[i]}");
                     }
 
-                    Console.Write(array[i, j] + " ");
+                }
+                else if (i > 1 && i < numbersInArray)
+                {
+
+                    if (array[i] > array[i - 1] && array[i] > array[i + 1])
+                    {
+                        Console.WriteLine($"Локальный максимум: {array[i]}");
+                    }
+                    
                 }
 
-                Console.WriteLine();
             }
 
-            Console.WriteLine($"Максимальное число: {maxNumber}");
         }
     }
 }
