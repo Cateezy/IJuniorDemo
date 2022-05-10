@@ -6,38 +6,36 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Random random = new Random();
             int numbersInArray = 5;
-            int[] array2 = new int[numbersInArray];
+            int[] array = new int[numbersInArray];
             int[] tempArray;
             int tempNumber;
             bool succesInput;
-            int sum;
-            string userInput;
+            string userInput = "";
 
             Console.WriteLine($"Введите {numbersInArray} чисел");
 
-            for (int i = 0; i < array2.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
                 userInput = Console.ReadLine();
-                succesInput = int.TryParse(userInput, out array2[i]);
+                succesInput = int.TryParse(userInput, out array[i]);
 
-                while (!succesInput)
+                while (succesInput == false)
                 {
                     Console.WriteLine("Ошибка ввода, введите число");
                     userInput = Console.ReadLine();
-                    succesInput = int.TryParse(userInput, out array2[i]);
+                    succesInput = int.TryParse(userInput, out array[i]);
                 }
             }
 
-            for (int i = 0; i < array2.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.Write($"{array2[i]} ");
+                Console.Write($"{array[i]} ");
             }
 
             Console.WriteLine();
 
-            while (true)
+            while (userInput != "exit")
             {
                 Console.WriteLine("Введите число чтобы добавить его в массив.\nВведите exit чтобы завершить программу.\nВведите sum чтобы получить сумму всех чисел.");
                 userInput = Console.ReadLine();
@@ -45,28 +43,23 @@ namespace IJuniorDemo
 
                 if (succesInput)
                 {
-                    tempArray = new int[array2.Length + 1];
+                    tempArray = new int[array.Length + 1];
 
-                    for (int i = 0; i < array2.Length; i++)
+                    for (int i = 0; i < array.Length; i++)
                     {
-                        tempArray[i] = array2[i];
+                        tempArray[i] = array[i];
                     }
                     tempArray[tempArray.Length - 1] = tempNumber;
-                    array2 = tempArray;
-                }
-
-                if (userInput == "exit")
-                {
-                    break;
+                    array = tempArray;
                 }
 
                 if (userInput == "sum")
                 {
-                    sum = 0;
+                    int sum = 0;
 
-                    for (int i = 0; i < array2.Length; i++)
+                    for (int i = 0; i < array.Length; i++)
                     {
-                        sum += array2[i];
+                        sum += array[i];
                     }
                     Console.WriteLine(sum);
                 }
