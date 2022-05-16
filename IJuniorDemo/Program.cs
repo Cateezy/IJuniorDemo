@@ -6,64 +6,47 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int numbersInArray = 5;
+            int numbersInArray = 30;
             int[] array = new int[numbersInArray];
-            int[] tempArray;
-            int tempNumber;
-            bool succesInput;
-            string userInput = "";
-
-            Console.WriteLine($"Введите {numbersInArray} чисел");
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                userInput = Console.ReadLine();
-                succesInput = int.TryParse(userInput, out array[i]);
-
-                while (succesInput == false)
-                {
-                    Console.WriteLine("Ошибка ввода, введите число");
-                    userInput = Console.ReadLine();
-                    succesInput = int.TryParse(userInput, out array[i]);
-                }
-            }
+            Random random = new Random();
+            int minNumberForRandom = 0;
+            int maxNumberForRandom = 5;
+            int repeatNumber = 0;
+            int countRepeatNumber = 0;
+            int tempRepeatNumber;
+            int tempCountRepeatNumber = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
+                array[i] = random.Next(minNumberForRandom, maxNumberForRandom);
                 Console.Write($"{array[i]} ");
             }
 
+            tempRepeatNumber = array[0];
             Console.WriteLine();
 
-            while (userInput != "exit")
+            for (int i = 0; i < array.Length; i++)
             {
-                Console.WriteLine("Введите число чтобы добавить его в массив.\nВведите exit чтобы завершить программу.\nВведите sum чтобы получить сумму всех чисел.");
-                userInput = Console.ReadLine();
-                succesInput = int.TryParse(userInput, out tempNumber);
 
-                if (succesInput)
+                if (tempRepeatNumber == array[i])
                 {
-                    tempArray = new int[array.Length + 1];
-
-                    for (int i = 0; i < array.Length; i++)
+                    tempCountRepeatNumber++;
+                }
+                else
+                {
+                    if (tempCountRepeatNumber > countRepeatNumber)
                     {
-                        tempArray[i] = array[i];
+                        countRepeatNumber = tempCountRepeatNumber;
+                        repeatNumber = tempRepeatNumber;
                     }
-                    tempArray[tempArray.Length - 1] = tempNumber;
-                    array = tempArray;
+
+                    tempCountRepeatNumber = 1;
+                    tempRepeatNumber = array[i];
                 }
 
-                if (userInput == "sum")
-                {
-                    int sum = 0;
-
-                    for (int i = 0; i < array.Length; i++)
-                    {
-                        sum += array[i];
-                    }
-                    Console.WriteLine(sum);
-                }
             }
+
+            Console.WriteLine($"Число: {repeatNumber}, Кол-во повторений: {countRepeatNumber}");
         }
     }
 }
