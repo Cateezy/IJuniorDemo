@@ -10,11 +10,8 @@ namespace IJuniorDemo
             int[] array = new int[numbersInArray];
             Random random = new Random();
             int minNumberForRandom = 0;
-            int maxNumberForRandom = 5;
-            int repeatNumber = 0;
-            int countRepeatNumber = 0;
-            int tempRepeatNumber;
-            int tempCountRepeatNumber = 0;
+            int maxNumberForRandom = 10;
+            Console.WriteLine("Изначальный массив: ");
 
             for (int i = 0; i < array.Length; i++)
             {
@@ -22,31 +19,27 @@ namespace IJuniorDemo
                 Console.Write($"{array[i]} ");
             }
 
-            tempRepeatNumber = array[0];
-            Console.WriteLine();
+            for (int i = 0; i < array.Length; i++)
+            {
+                for (int j = i + 1; j < array.Length; j++)
+                {
+                    int temp;
+
+                    if (array[i] > array[j])
+                    {
+                        temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+
+            Console.WriteLine("\nОтсортированный массив: ");
 
             for (int i = 0; i < array.Length; i++)
             {
-
-                if (tempRepeatNumber == array[i])
-                {
-                    tempCountRepeatNumber++;
-                }
-                else
-                {
-                    if (tempCountRepeatNumber > countRepeatNumber)
-                    {
-                        countRepeatNumber = tempCountRepeatNumber;
-                        repeatNumber = tempRepeatNumber;
-                    }
-
-                    tempCountRepeatNumber = 1;
-                    tempRepeatNumber = array[i];
-                }
-
+                Console.Write($"{array[i]} ");
             }
-
-            Console.WriteLine($"Число: {repeatNumber}, Кол-во повторений: {countRepeatNumber}");
         }
     }
 }
