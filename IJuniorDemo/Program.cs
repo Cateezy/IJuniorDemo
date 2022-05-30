@@ -6,12 +6,25 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            string text = "One Two Three Four";
-            string[] textArray = text.Split(' ');
+            int[] array = new int[] { 1, 2, 3, 4, 5 };
+            Console.WriteLine("Введите число на которое сдвинется массив влево: ");
+            int step = Convert.ToInt32(Console.ReadLine());
 
-            for (int i = 0; i < textArray.Length; i++)
+            for (int i = 0; i < step; i++)
             {
-                Console.WriteLine($"{textArray[i]} ");
+                int temp = array[0];
+
+                for (int j = 0; j < array.Length - 1; j++)
+                {
+                    array[j] = array[j + 1];
+                }
+                
+                array[array.Length - 1] = temp;
+            }
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.Write($"{array[i]} ");
             }
         }
     }
