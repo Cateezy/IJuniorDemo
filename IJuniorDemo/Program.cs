@@ -42,7 +42,7 @@ namespace IJuniorDemo
 
         static void AddDossier(ref string[] fullName, ref string[] jobTitle)
         {
-            IncreaseArray(ref fullName, ref jobTitle);
+            ResizeArray(ref fullName, ref jobTitle);
 
             Console.WriteLine("Введите ФИО через пробел: ");
             fullName[fullName.Length - 1] = Console.ReadLine();
@@ -70,7 +70,7 @@ namespace IJuniorDemo
                 return;
             }
 
-            DecreaseArray(index, ref fullName, ref jobTitle);
+            ResizeArray(index, ref fullName, ref jobTitle);
         }
 
         static void FindByLastName(string[] fullName, string[] jobTitle)
@@ -93,7 +93,12 @@ namespace IJuniorDemo
             Console.WriteLine("Такой фамилии нет в базе.");
         }
 
-        static void IncreaseArray(ref string[] fullName, ref string[] jobTitle)
+        /// <summary>
+        /// Увеличение массива.
+        /// </summary>
+        /// <param name="fullName">Массив ФИО</param>
+        /// <param name="jobTitle">Массив Должность</param>
+        static void ResizeArray(ref string[] fullName, ref string[] jobTitle)
         {
             string[] tempFullName = new string[fullName.Length + 1];
             string[] tempJobTitle = new string[jobTitle.Length + 1];
@@ -108,7 +113,13 @@ namespace IJuniorDemo
             jobTitle = tempJobTitle;
         }
 
-        static void DecreaseArray(int index, ref string[] fullName, ref string[] jobTitle)
+        /// <summary>
+        /// Уменьшение массива.
+        /// </summary>
+        /// <param name="index">Индекс</param>
+        /// <param name="fullName">Массив ФИО</param>
+        /// <param name="jobTitle">Массив Должность</param>
+        static void ResizeArray(int index, ref string[] fullName, ref string[] jobTitle)
         {
             string[] tempFullName = new string[fullName.Length - 1];
             string[] tempJobTitle = new string[jobTitle.Length - 1];
