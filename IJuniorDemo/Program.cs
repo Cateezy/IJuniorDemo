@@ -42,7 +42,8 @@ namespace IJuniorDemo
 
         static void AddDossier(ref string[] fullName, ref string[] jobTitle)
         {
-            ResizeArray(ref fullName, ref jobTitle);
+            ResizeArray(ref fullName);
+            ResizeArray(ref jobTitle);
 
             Console.WriteLine("Введите ФИО через пробел: ");
             fullName[fullName.Length - 1] = Console.ReadLine();
@@ -70,7 +71,8 @@ namespace IJuniorDemo
                 return;
             }
 
-            ResizeArray(index, ref fullName, ref jobTitle);
+            ResizeArray(index, ref fullName);
+            ResizeArray(index, ref jobTitle);
         }
 
         static void FindByLastName(string[] fullName, string[] jobTitle)
@@ -96,52 +98,43 @@ namespace IJuniorDemo
         /// <summary>
         /// Увеличение массива.
         /// </summary>
-        /// <param name="fullName">Массив ФИО</param>
-        /// <param name="jobTitle">Массив Должность</param>
-        static void ResizeArray(ref string[] fullName, ref string[] jobTitle)
+        /// <param name="array">Массив</param>
+        static void ResizeArray(ref string[] array)
         {
-            string[] tempFullName = new string[fullName.Length + 1];
-            string[] tempJobTitle = new string[jobTitle.Length + 1];
+            string[] tempArray = new string[array.Length + 1];
 
-            for (int i = 0; i < jobTitle.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                tempJobTitle[i] = jobTitle[i];
-                tempFullName[i] = fullName[i];
+                tempArray[i] = array[i];
             }
 
-            fullName = tempFullName;
-            jobTitle = tempJobTitle;
+            array = tempArray;
         }
 
         /// <summary>
         /// Уменьшение массива.
         /// </summary>
         /// <param name="index">Индекс</param>
-        /// <param name="fullName">Массив ФИО</param>
-        /// <param name="jobTitle">Массив Должность</param>
-        static void ResizeArray(int index, ref string[] fullName, ref string[] jobTitle)
+        /// <param name="array">Массив</param>
+        static void ResizeArray(int index, ref string[] array)
         {
-            string[] tempFullName = new string[fullName.Length - 1];
-            string[] tempJobTitle = new string[jobTitle.Length - 1];
-            fullName[index] = null;
-            jobTitle[index] = null;
+            string[] tempArray = new string[array.Length - 1];
+            array[index] = null;
 
-            for (int i = 0; i <= tempFullName.Length; i++)
+            for (int i = 0; i <= tempArray.Length; i++)
             {
 
-                if (fullName[i] == null && jobTitle[i] == null)
+                if (array[i] == null)
                 {
                     continue;
                 }
                 else
                 {
-                    tempFullName[i] = fullName[i];
-                    tempJobTitle[i] = jobTitle[i];
+                    tempArray[i] = array[i];
                 }
             }
 
-            fullName = tempFullName;
-            jobTitle = tempJobTitle;
+            array = tempArray;
         }
     }
 }
