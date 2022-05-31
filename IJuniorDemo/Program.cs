@@ -42,17 +42,7 @@ namespace IJuniorDemo
 
         static void AddDossier(ref string[] fullName, ref string[] jobTitle)
         {
-            string[] tempFullName = new string[fullName.Length + 1];
-            string[] tempJobTitle = new string[jobTitle.Length + 1];
-
-            for (int i = 0; i < jobTitle.Length; i++)
-            {
-                tempJobTitle[i] = jobTitle[i];
-                tempFullName[i] = fullName[i];
-            }
-
-            fullName = tempFullName;
-            jobTitle = tempJobTitle;
+            IncreaseArray(ref fullName, ref jobTitle);
 
             Console.WriteLine("Введите ФИО через пробел: ");
             fullName[fullName.Length - 1] = Console.ReadLine();
@@ -80,6 +70,46 @@ namespace IJuniorDemo
                 return;
             }
 
+            DecreaseArray(index, ref fullName, ref jobTitle);
+        }
+
+        static void FindByLastName(string[] fullName, string[] jobTitle)
+        {
+            string[] tempSplitFullName;
+            Console.WriteLine("Введите фамилию для поиска: ");
+            string lastName = Console.ReadLine();
+
+            for (int i = 0; i < fullName.Length; i++)
+            {
+                tempSplitFullName = fullName[i].Split(' ');
+
+                if (tempSplitFullName[0].ToLower() == lastName.ToLower())
+                {
+                    Console.WriteLine($"Номер: {fullName.Length - 1} ФИО: {fullName[i]} Должность: {jobTitle[i]}");
+                    return;
+                }
+            }
+
+            Console.WriteLine("Такой фамилии нет в базе.");
+        }
+
+        static void IncreaseArray(ref string[] fullName, ref string[] jobTitle)
+        {
+            string[] tempFullName = new string[fullName.Length + 1];
+            string[] tempJobTitle = new string[jobTitle.Length + 1];
+
+            for (int i = 0; i < jobTitle.Length; i++)
+            {
+                tempJobTitle[i] = jobTitle[i];
+                tempFullName[i] = fullName[i];
+            }
+
+            fullName = tempFullName;
+            jobTitle = tempJobTitle;
+        }
+
+        static void DecreaseArray(int index, ref string[] fullName, ref string[] jobTitle)
+        {
             string[] tempFullName = new string[fullName.Length - 1];
             string[] tempJobTitle = new string[jobTitle.Length - 1];
             fullName[index] = null;
@@ -101,26 +131,6 @@ namespace IJuniorDemo
 
             fullName = tempFullName;
             jobTitle = tempJobTitle;
-        }
-
-        static void FindByLastName(string[] fullName, string[] jobTitle)
-        {
-            string[] tempSplitFullName;
-            Console.WriteLine("Введите фамилию для поиска: ");
-            string lastName = Console.ReadLine();
-
-            for (int i = 0; i < fullName.Length; i++)
-            {
-                tempSplitFullName = fullName[i].Split(' ');
-
-                if (tempSplitFullName[0].ToLower() == lastName.ToLower())
-                {
-                    Console.WriteLine($"Номер: {fullName.Length - 1} ФИО: {fullName[i]} Должность: {jobTitle[i]}");
-                    return;
-                }
-            }
-
-            Console.WriteLine("Такой фамилии нет в базе.");
         }
     }
 }
