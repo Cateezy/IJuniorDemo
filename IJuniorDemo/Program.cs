@@ -9,8 +9,6 @@ namespace IJuniorDemo
             string[] fullName = new string[0];
             string[] jobTitle = new string[0];
             int userInput = 0;
-            int index;
-            string lastName;
 
             while (userInput != 5)
             {
@@ -30,14 +28,10 @@ namespace IJuniorDemo
                         PrintAllDossiers(fullName, jobTitle);
                         break;
                     case 3:
-                        Console.WriteLine($"Введите индекс от 0 до {fullName.Length - 1} включительно.");
-                        index = Convert.ToInt32(Console.ReadLine());
-                        DeleteDossier(index, ref fullName, ref jobTitle);
+                        DeleteDossier(ref fullName, ref jobTitle);
                         break;
                     case 4:
-                        Console.WriteLine("Введите фамилию для поиска: ");
-                        lastName = Console.ReadLine();
-                        FindByLastName(lastName, fullName, jobTitle);
+                        FindByLastName(fullName, jobTitle);
                         break;
                     case 5:
                         break;
@@ -54,10 +48,6 @@ namespace IJuniorDemo
             for (int i = 0; i < jobTitle.Length; i++)
             {
                 tempJobTitle[i] = jobTitle[i];
-            }
-
-            for (int i = 0; i < fullName.Length; i++)
-            {
                 tempFullName[i] = fullName[i];
             }
 
@@ -72,14 +62,18 @@ namespace IJuniorDemo
 
         static void PrintAllDossiers(string[] fullName, string[] jobTitle)
         {
+
             for (int i = 0; i < fullName.Length; i++)
             {
                 Console.WriteLine($"{i + 1} - {fullName[i]} - {jobTitle[i]}");
             }
         }
 
-        static void DeleteDossier(int index, ref string[] fullName, ref string[] jobTitle)
+        static void DeleteDossier(ref string[] fullName, ref string[] jobTitle)
         {
+            Console.WriteLine($"Введите индекс от 0 до {fullName.Length - 1} включительно.");
+            int index = Convert.ToInt32(Console.ReadLine());
+
             if (index > fullName.Length - 1)
             {
                 Console.WriteLine($"Неверно указан индекс, индекс должен быть от 0 до {fullName.Length - 1} включительно.\nВозврат в меню.");
@@ -93,25 +87,15 @@ namespace IJuniorDemo
 
             for (int i = 0; i <= tempFullName.Length; i++)
             {
-                if (fullName[i] == null)
-                {
-                    continue;
-                }
-                else
-                {
-                    tempFullName[i - 1] = fullName[i];
-                }
-            }
 
-            for (int i = 0; i <= tempJobTitle.Length; i++)
-            {
-                if (jobTitle[i] == null)
+                if (fullName[i] == null && jobTitle[i] == null)
                 {
                     continue;
                 }
                 else
                 {
-                    tempJobTitle[i - 1] = jobTitle[i];
+                    tempFullName[i] = fullName[i];
+                    tempJobTitle[i] = jobTitle[i];
                 }
             }
 
@@ -119,18 +103,23 @@ namespace IJuniorDemo
             jobTitle = tempJobTitle;
         }
 
-        static void FindByLastName(string lastName, string[] fullName, string[] jobTitle)
+        static void FindByLastName(string[] fullName, string[] jobTitle)
         {
             string[] tempSplitFullName;
+            Console.WriteLine("Введите фамилию для поиска: ");
+            string lastName = Console.ReadLine();
+
             for (int i = 0; i < fullName.Length; i++)
             {
                 tempSplitFullName = fullName[i].Split(' ');
+
                 if (tempSplitFullName[0].ToLower() == lastName.ToLower())
                 {
                     Console.WriteLine($"Номер: {fullName.Length - 1} ФИО: {fullName[i]} Должность: {jobTitle[i]}");
                     return;
                 }
             }
+
             Console.WriteLine("Такой фамилии нет в базе.");
         }
     }
