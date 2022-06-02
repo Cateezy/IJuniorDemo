@@ -6,7 +6,6 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Введите число в строку для преобразования: ");
             int result = ConvertStringNumberToInt();
 
             Console.WriteLine($"Число: {result}");
@@ -14,6 +13,7 @@ namespace IJuniorDemo
 
         static int ConvertStringNumberToInt()
         {
+            Console.WriteLine("Введите число в строку для преобразования: ");
             string input = Console.ReadLine();
             bool correctInput = Int32.TryParse(input, out int result);
 
