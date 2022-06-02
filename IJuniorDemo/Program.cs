@@ -6,12 +6,12 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int result = ConvertStringNumberToInt();
+            int result = GetInt();
 
             Console.WriteLine($"Число: {result}");
         }
 
-        static int ConvertStringNumberToInt()
+        static int GetInt()
         {
             Console.WriteLine("Введите число в строку для преобразования: ");
             string input = Console.ReadLine();
