@@ -6,35 +6,25 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int health = 5;
-            int maxHealth = 10;
-            int mana = 3;
-            int maxMana = 10;
+            Console.WriteLine("Введите число в строку для преобразования: ");
+            string input = Console.ReadLine();
+            int result = ConvertToInt(input);
 
-            DrawBar(health, maxHealth, '$', 0);
-            DrawBar(mana, maxMana,'#', 1);
-            Console.WriteLine();
+            Console.WriteLine($"Число: {result}");
         }
 
-        static void DrawBar(int value, int maxValue, char symbol, int positionY)
+        static int ConvertToInt(string input)
         {
-            string bar = "";
+            bool correctInput = Int32.TryParse(input, out int result);
 
-            for (int i = 0; i < value; i++)
+            while (correctInput != true)
             {
-                bar += symbol;
+                Console.WriteLine("Ошибка! Введите число: ");
+                input = Console.ReadLine();
+                correctInput = Int32.TryParse(input, out result);
             }
 
-            Console.SetCursorPosition(0, positionY);
-            Console.Write($"[{bar}");
-            bar = "";
-
-            for (int i = value; i < maxValue; i++)
-            {
-                bar += '_';
-            }
-
-            Console.Write($"{bar}]");
+            return result;
         }
     }
 }
