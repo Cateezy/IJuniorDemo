@@ -11,9 +11,9 @@ namespace IJuniorDemo
 
             Shuffle(array);
 
-            foreach (var i in array)
+            foreach (var index in array)
             {
-                Console.Write($"{i} ");
+                Console.Write($"{index} ");
             }
         }
 
