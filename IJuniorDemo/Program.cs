@@ -18,8 +18,7 @@ namespace IJuniorDemo
             
             while (isPlaying)
             {
-                GetDirection(ref directionX, ref directionY);
-                ChangePlayerPosition(map, ref playerPositionX, ref playerPositionY, ref directionX, ref directionY);
+                PlayerMovement(map, ref playerPositionX, ref playerPositionY, ref directionX, ref directionY);
             }
         }
 
@@ -65,7 +64,7 @@ namespace IJuniorDemo
             Console.Write('@');
         }
 
-        static void GetDirection(ref int directionX, ref int directionY)
+        static void PlayerMovement(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
         {
             if (Console.KeyAvailable)
             {
@@ -90,23 +89,17 @@ namespace IJuniorDemo
                         directionY = 1;
                         break;
                 }
-            }
-        }
 
-        static void ChangePlayerPosition(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
-        {
-            if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
-            {
-                Console.SetCursorPosition(playerPositionY, playerPositionX);
-                Console.Write(" ");
+                if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
+                {
+                    Console.SetCursorPosition(playerPositionY, playerPositionX);
+                    Console.Write(" ");
 
-                playerPositionX += directionX;
-                playerPositionY += directionY;
+                    playerPositionX += directionX;
+                    playerPositionY += directionY;
 
-                DrawPlayer(ref playerPositionX, ref playerPositionY);
-
-                directionX = 0;
-                directionY = 0;
+                    DrawPlayer(ref playerPositionX, ref playerPositionY);
+                }
             }
         }
     }
