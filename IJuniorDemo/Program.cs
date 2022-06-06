@@ -12,13 +12,15 @@ namespace IJuniorDemo
             int directionY = 0;
             bool isPlaying = true;
             char[,] map = ReadMap("map1.txt", out playerPositionX, out playerPositionY);
-            DrawMapAndPlayer(map, ref playerPositionX, ref playerPositionY);
+            DrawMap(map);
+            DrawPlayer(ref playerPositionX, ref playerPositionY);
             Console.CursorVisible = false;
             
 
             while (isPlaying)
             {
                 PlayerMovement(map, ref playerPositionX, ref playerPositionY, ref directionX, ref directionY);
+                PlayerChooseDirection(ref directionX, ref directionY);
             }
         }
 
@@ -48,7 +50,7 @@ namespace IJuniorDemo
             return map;
         }
 
-        static void DrawMapAndPlayer(char[,] map, ref int playerPositionX, ref int playerPositionY)
+        static void DrawMap(char[,] map)
         {
             for (int i = 0; i < map.GetLength(0); i++)
             {
@@ -59,12 +61,15 @@ namespace IJuniorDemo
                 }
                 Console.WriteLine();
             }
+        }
 
+        static void DrawPlayer(ref int playerPositionX, ref int playerPositionY)
+        {
             Console.SetCursorPosition(playerPositionY, playerPositionX);
             Console.Write('@');
         }
 
-        static void PlayerMovement(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
+        static void PlayerChooseDirection(ref int directionX, ref int directionY)
         {
             if (Console.KeyAvailable)
             {
@@ -89,18 +94,23 @@ namespace IJuniorDemo
                         directionY = 1;
                         break;
                 }
+            }
+        }
 
-                if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
-                {
-                    Console.SetCursorPosition(playerPositionY, playerPositionX);
-                    Console.Write(" ");
+        static void PlayerMovement(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
+        {
+            if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
+            {
+                Console.SetCursorPosition(playerPositionY, playerPositionX);
+                Console.Write(" ");
 
-                    playerPositionX += directionX;
-                    playerPositionY += directionY;
+                playerPositionX += directionX;
+                playerPositionY += directionY;
 
-                    Console.SetCursorPosition(playerPositionY, playerPositionX);
-                    Console.Write("@");
-                }
+                DrawPlayer(ref playerPositionX, ref playerPositionY);
+
+                directionX = 0;
+                directionY = 0;
             }
         }
     }
