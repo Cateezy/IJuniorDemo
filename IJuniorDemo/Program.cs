@@ -7,7 +7,8 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int playerPositionX, playerPositionY;
+            int playerPositionX;
+            int playerPositionY;
             int directionX = 0;
             int directionY = 0;
             bool isPlaying = true;
@@ -18,7 +19,8 @@ namespace IJuniorDemo
             
             while (isPlaying)
             {
-                PlayerMovement(map, ref playerPositionX, ref playerPositionY, ref directionX, ref directionY);
+                GetDirection(ref directionX, ref directionY);
+                ChangePlayerPosition(map, ref playerPositionX, ref playerPositionY, ref directionX, ref directionY);
             }
         }
 
@@ -64,7 +66,7 @@ namespace IJuniorDemo
             Console.Write('@');
         }
 
-        static void PlayerMovement(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
+        static void GetDirection(ref int directionX, ref int directionY)
         {
             if (Console.KeyAvailable)
             {
@@ -89,17 +91,20 @@ namespace IJuniorDemo
                         directionY = 1;
                         break;
                 }
+            }
+        }
 
-                if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
-                {
-                    Console.SetCursorPosition(playerPositionY, playerPositionX);
-                    Console.Write(" ");
+        static void ChangePlayerPosition(char[,] map, ref int playerPositionX, ref int playerPositionY, ref int directionX, ref int directionY)
+        {
+            if (map[playerPositionX + directionX, playerPositionY + directionY] != '#')
+            {
+                Console.SetCursorPosition(playerPositionY, playerPositionX);
+                Console.Write(" ");
 
-                    playerPositionX += directionX;
-                    playerPositionY += directionY;
+                playerPositionX += directionX;
+                playerPositionY += directionY;
 
-                    DrawPlayer(ref playerPositionX, ref playerPositionY);
-                }
+                DrawPlayer(ref playerPositionX, ref playerPositionY);
             }
         }
     }
