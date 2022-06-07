@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace IJuniorDemo
@@ -7,28 +8,25 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int[] array = new int[] {1, 2, 3, 4, 5};
+            Dictionary<string, string> meaningWords = new Dictionary<string, string>();
+            meaningWords.Add("Программи́рование", "Процесс создания компьютерных программ");
+            meaningWords.Add("Программист", "специалист, занимающийся программированием, то есть созданием компьютерных программ");
 
-            Shuffle(array);
-
-            foreach (var number in array)
-            {
-                Console.Write($"{number} ");
-            }
+            GetValue(meaningWords);
         }
 
-        static void Shuffle(int[] array)
+        static void GetValue(Dictionary<string, string> meaningWords)
         {
-            Random random = new Random();
-            int index;
-            int temp;
+            Console.WriteLine("Введите слово, чтобы получить значение: ");
+            string userInput = Console.ReadLine();
 
-            for (int i = array.Length - 1; i >= 1; i--)
+            if (meaningWords.ContainsKey(userInput))
             {
-                index = random.Next(i + 1);
-                temp = array[index];
-                array[index] = array[i];
-                array[i] = temp;
+                Console.WriteLine($"Значение слова {meaningWords[userInput]}.");
+            }
+            else
+            {
+                Console.WriteLine("Слово отсутствует в словаре.");
             }
         }
     }
