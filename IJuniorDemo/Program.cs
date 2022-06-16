@@ -7,22 +7,42 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            int cashAccount = 0;
-            int clientNumber = 1;
-            Queue<int> money = new Queue<int>();
-            money.Enqueue(300);
-            money.Enqueue(500);
-            money.Enqueue(700);
+            List<int> numbers = new List<int>();
+            string userInput = "";
+            bool isInt;
+            int sum = 0;
 
-            while (money.Count != 0)
+            while(userInput != "exit")
             {
-                Console.WriteLine($"Обслуживается клиент №{clientNumber}, сумма:{money.Peek()}");
-                cashAccount += money.Peek();
-                clientNumber++;
-                Console.WriteLine($"Счет - {cashAccount}");
-                money.Dequeue();
-                Console.ReadKey();
-                Console.Clear();
+                Console.WriteLine("Введите add, чтобы добавить число. Введите sum, чтобы просуммировать все числа в коллекции. Введите exit, чтобы завершить программу.");
+                userInput = Console.ReadLine().ToLower();
+
+                if (userInput == "add")
+                {
+                    Console.WriteLine("Введите число: ");
+                    userInput = Console.ReadLine();
+                    isInt = int.TryParse(userInput, out int result);
+
+                    while (isInt != true)
+                    {
+                        Console.WriteLine("Вы ввели не число! Повторите ввод: ");
+                        userInput = Console.ReadLine();
+                        isInt = int.TryParse(userInput, out result);
+                    }
+
+                    numbers.Add(result);
+                }
+
+                if (userInput == "sum")
+                {
+
+                    foreach (var number in numbers)
+                    {
+                        sum += number;
+                    }
+
+                    Console.WriteLine($"Сумма чисел в коллекции:{sum}");
+                }
             }
         }
     }
