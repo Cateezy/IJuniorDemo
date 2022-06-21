@@ -16,16 +16,16 @@ namespace IJuniorDemo
                 Console.WriteLine("Введите exit, чтобы завершить программу.");
                 userInput = Console.ReadLine().ToLower();
 
-                IsInt(userInput, ref numbers);
+                AddNumber(userInput, numbers);
 
                 if (userInput == "sum")
                 {
-                    SumNumbers(ref numbers);
+                    SumNumbers(numbers);
                 }
             }
         }
 
-        static void IsInt(string userInput, ref List<int> numbers)
+        static void AddNumber(string userInput, List<int> numbers)
         {
             bool isInt = int.TryParse(userInput, out int result);
 
@@ -35,7 +35,7 @@ namespace IJuniorDemo
             }
         }
 
-        static void SumNumbers(ref List<int> numbers)
+        static void SumNumbers(List<int> numbers)
         {
             int sum = 0;
 
