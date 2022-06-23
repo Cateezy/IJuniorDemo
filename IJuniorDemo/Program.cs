@@ -7,44 +7,53 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            List<int> numbers = new List<int>();
+            List<string> dossier = new List<string>();
             string userInput = "";
 
-            while(userInput != "exit")
+            while (userInput != "exit")
             {
-                Console.WriteLine("Введите число чтобы добавить его в коллекцию. Введите sum, чтобы просуммировать все числа в коллекции.");
-                Console.WriteLine("Введите exit, чтобы завершить программу.");
+                Console.WriteLine("Введите add чтобы добавить досье. Введите print чтобы вывести все досье.\nВведите delete чтобы удалить досье. Введите exit чтобы выйти из программы.");
                 userInput = Console.ReadLine().ToLower();
 
-                AddNumber(userInput, numbers);
-
-                if (userInput == "sum")
+                if (userInput == "add")
                 {
-                    SumNumbers(numbers);
+                    AddDossier(dossier);
+                }
+
+                if (userInput == "print")
+                {
+                    PrintAllDossier(dossier);
+                }
+
+                if (userInput == "delete")
+                {
+                    DeleteDossier(dossier);
                 }
             }
         }
 
-        static void AddNumber(string userInput, List<int> numbers)
+        static void AddDossier(List<string> dossier)
         {
-            bool isInt = int.TryParse(userInput, out int result);
+            Console.WriteLine("Введите ФИО: ");
+            string fullName = Console.ReadLine();
+            Console.WriteLine("Введите должность: ");
+            string jobTitle = Console.ReadLine();
+            dossier.Add(fullName + " - " + jobTitle);
+        }
 
-            if (isInt == true)
+        static void PrintAllDossier(List<string> dossier)
+        {
+            foreach (string userInfo in dossier)
             {
-                numbers.Add(result);
+                Console.WriteLine(userInfo);
             }
         }
 
-        static void SumNumbers(List<int> numbers)
+        static void DeleteDossier(List<string> dossier)
         {
-            int sum = 0;
-
-            foreach (var number in numbers)
-            {
-                sum += number;
-            }
-
-            Console.WriteLine($"Сумма чисел в коллекции:{sum}");
+            Console.WriteLine($"Введите номер досье которое нужно удалить, от 0 до {dossier.Count - 1}");
+            int index = Convert.ToInt32(Console.ReadLine());
+            dossier.RemoveAt(index);
         }
     }
 }
