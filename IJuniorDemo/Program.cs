@@ -19,13 +19,11 @@ namespace IJuniorDemo
                 {
                     AddDossier(dossier);
                 }
-
-                if (userInput == "print")
+                else if (userInput == "print")
                 {
                     PrintAllDossier(dossier);
                 }
-
-                if (userInput == "delete")
+                else if (userInput == "delete")
                 {
                     DeleteDossier(dossier);
                 }
@@ -52,7 +50,21 @@ namespace IJuniorDemo
         static void DeleteDossier(List<string> dossier)
         {
             Console.WriteLine($"Введите номер досье которое нужно удалить, от 0 до {dossier.Count - 1}");
-            int index = Convert.ToInt32(Console.ReadLine());
+            string userInput = Console.ReadLine();
+            int index = 0;
+            bool isInt = false;
+
+            while (isInt == false)
+            {
+                isInt = int.TryParse(userInput, out index);
+
+                if (isInt == false)
+                {
+                    Console.WriteLine("Введено не число, повторите ввод: ");
+                    userInput = Console.ReadLine();
+                }
+            }
+            
             dossier.RemoveAt(index);
         }
     }
