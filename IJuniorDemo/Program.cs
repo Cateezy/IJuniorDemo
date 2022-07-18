@@ -41,27 +41,39 @@ namespace IJuniorDemo
 
         static void PrintAllDossier(List<string> dossier)
         {
-            foreach (string userInfo in dossier)
+            if (dossier.Count > 0)
             {
-                Console.WriteLine(userInfo);
+
+                foreach (string userInfo in dossier)
+                {
+                    Console.WriteLine(userInfo);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Нет информации для вывода, список пуст");
             }
         }
 
         static void DeleteDossier(List<string> dossier)
         {
             Console.WriteLine($"Введите номер досье которое нужно удалить, от 0 до {dossier.Count - 1}");
-            string userInput = Console.ReadLine();
             int index = 0;
             bool isInt = false;
 
             while (isInt == false)
             {
-                isInt = int.TryParse(userInput, out index);
+                isInt = int.TryParse(Console.ReadLine(), out index);
 
                 if (isInt == false)
                 {
                     Console.WriteLine("Введено не число, повторите ввод: ");
-                    userInput = Console.ReadLine();
+                }
+
+                if (index >= dossier.Count || index < 0)
+                {
+                    Console.WriteLine("Индекс отсутсвует в списке, введите индекс находящийся в списке.");
+                    isInt = false;
                 }
             }
             
