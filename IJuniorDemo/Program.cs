@@ -69,8 +69,7 @@ namespace IJuniorDemo
                 {
                     Console.WriteLine("Введено не число, повторите ввод: ");
                 }
-
-                if (index >= dossier.Count || index < 0)
+                else if (index >= dossier.Count || index < 0)
                 {
                     Console.WriteLine("Индекс отсутсвует в списке, введите индекс находящийся в списке.");
                     isInt = false;
