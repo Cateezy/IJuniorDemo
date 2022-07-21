@@ -7,76 +7,48 @@ namespace IJuniorDemo
     {
         static void Main(string[] args)
         {
-            List<string> dossier = new List<string>();
-            string userInput = "";
+            int[] firstArray = new int[] { 3, 4, 3, 7, 8};
+            int[] secondArray = new int[] { 5, 7, 8, 1, 4 };
+            List<int> list = new List<int>();
 
-            while (userInput != "exit")
+            ConvertArrayToList(firstArray, list);
+            ConvertArrayToList(secondArray, list);
+
+            Console.WriteLine("Исходный список: ");
+
+            foreach (int number in list)
             {
-                Console.WriteLine("Введите add чтобы добавить досье. Введите print чтобы вывести все досье.\nВведите delete чтобы удалить досье. Введите exit чтобы выйти из программы.");
-                userInput = Console.ReadLine().ToLower();
+                Console.Write($"{number} ");
+            }
 
-                if (userInput == "add")
-                {
-                    AddDossier(dossier);
-                }
-                else if (userInput == "print")
-                {
-                    PrintAllDossier(dossier);
-                }
-                else if (userInput == "delete")
-                {
-                    DeleteDossier(dossier);
-                }
+            RemoveDuplicateNumbers(list);
+            Console.WriteLine("\nОтформатированный список: ");
+
+            foreach (int number in list)
+            {
+                Console.Write($"{number} ");
             }
         }
 
-        static void AddDossier(List<string> dossier)
+        static void ConvertArrayToList(int[] array, List<int> list)
         {
-            Console.WriteLine("Введите ФИО: ");
-            string fullName = Console.ReadLine();
-            Console.WriteLine("Введите должность: ");
-            string jobTitle = Console.ReadLine();
-            dossier.Add(fullName + " - " + jobTitle);
-        }
-
-        static void PrintAllDossier(List<string> dossier)
-        {
-            if (dossier.Count > 0)
+            foreach (int number in array)
             {
-
-                foreach (string userInfo in dossier)
-                {
-                    Console.WriteLine(userInfo);
-                }
-            }
-            else
-            {
-                Console.WriteLine("Нет информации для вывода, список пуст");
+                list.Add(number);
             }
         }
 
-        static void DeleteDossier(List<string> dossier)
+        static void RemoveDuplicateNumbers(List<int> list)
         {
-            Console.WriteLine($"Введите номер досье которое нужно удалить, от 0 до {dossier.Count - 1}");
-            int index = 0;
-            bool isInt = false;
+            list.Sort();
 
-            while (isInt == false)
+            for (int i = 1; i < list.Count; i++)
             {
-                isInt = int.TryParse(Console.ReadLine(), out index);
-
-                if (isInt == false)
+                if (list[i] == list[i - 1])
                 {
-                    Console.WriteLine("Введено не число, повторите ввод: ");
-                }
-                else if (index >= dossier.Count || index < 0)
-                {
-                    Console.WriteLine("Индекс отсутсвует в списке, введите индекс находящийся в списке.");
-                    isInt = false;
+                    list.RemoveAt(i);
                 }
             }
-            
-            dossier.RemoveAt(index);
         }
     }
 }
